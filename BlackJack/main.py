@@ -60,7 +60,7 @@ for i in range(0, 61):
 random.shuffle(Cartas)
 print(Cartas)
 #Repartir
-numPlayers = 4 #Cantidad de jugadores total
+numPlayers = 2 #Cantidad de jugadores total
 Players = []
 
 for playerID in range(0, numPlayers):
@@ -100,16 +100,25 @@ for player in Players:
         while exit:
             print(player.privatecard, cards[player.id], str(CantidadCartas(cards[player.id], player.privatecard)))
             msg = "want a card?"
-            a = input("%s (y/N) " % msg).lower() == 'y'
-            if a:
+            a = input("%s (y/n/s) " % msg).lower()
+            if a == "y":
                 cards[player.id].append(Cartas[-1])
                 del Cartas[-1]
                 if (CantidadCartas(cards[player.id], player.privatecard))>21:
                     print("bro as perdio eres to nup")
                     exit = False
+            elif a == "s":
+                numPlayers += 1
+                Players.append(Player(numPlayers)) #no se si es -1
+                print(Players[numPlayers-1].id, len(Players))
+                
+
+                
+
             else:
                 print(CantidadCartas(cards[player.id], player.privatecard))
                 exit = False
+            
 
 #la mano
 while (CantidadCartas(mesacards, mesapcard))<17:
