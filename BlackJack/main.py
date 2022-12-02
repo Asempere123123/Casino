@@ -41,28 +41,30 @@ startingMoney = 1000
 apuestaInicial = 10
 money = []
 #lomismo hands = []
+deckAmount = 3
 
-for i in range(0, 61):
-    if i < 4:
-        Cartas.append(1)
-    if 4 < i < 9:
-        Cartas.append(2)
-    if 9 < i < 14:
-        Cartas.append(3)
-    if 14 < i < 19:
-        Cartas.append(4)
-    if 19 < i < 24:
-        Cartas.append(5)
-    if 24 < i < 29:
-        Cartas.append(6)
-    if 29 < i < 34:
-        Cartas.append(7)
-    if 34 < i < 39:
-        Cartas.append(8)
-    if 39 < i < 44:
-        Cartas.append(9)
-    if 44 < i:
-        Cartas.append(10)
+for n in range(0, deckAmount):
+    for i in range(0, 61):
+        if i < 4:
+            Cartas.append(1)
+        if 4 < i < 9:
+            Cartas.append(2)
+        if 9 < i < 14:
+            Cartas.append(3)
+        if 14 < i < 19:
+            Cartas.append(4)
+        if 19 < i < 24:
+            Cartas.append(5)
+        if 24 < i < 29:
+            Cartas.append(6)
+        if 29 < i < 34:
+            Cartas.append(7)
+        if 34 < i < 39:
+            Cartas.append(8)
+        if 39 < i < 44:
+            Cartas.append(9)
+        if 44 < i:
+            Cartas.append(10)
 #Mezclar
 random.shuffle(Cartas)
 print(Cartas)
