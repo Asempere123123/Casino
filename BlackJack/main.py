@@ -28,6 +28,7 @@ class Player:
         self.id = id
 
     owner = None
+    apuesta = 0
     privatecard = 0
 
 cards = []
@@ -36,6 +37,9 @@ mesapcard = int()
 
 Cartas = []
 
+startingMoney = 1000
+apuestaInicial = 10
+money = []
 #lomismo hands = []
 
 for i in range(0, 61):
@@ -63,7 +67,7 @@ for i in range(0, 61):
 random.shuffle(Cartas)
 print(Cartas)
 #Repartir
-numPlayers = 5 #Cantidad de jugadores total
+numPlayers = 2 #Cantidad de jugadores total
 Players = []
 
 for playerID in range(0, numPlayers):
@@ -76,6 +80,8 @@ for player in Players:
     del Cartas[-1]
 
     player.owner = player.id
+    money.append(startingMoney)
+    player.apuesta = apuestaInicial
     #añadir sistema posesion hands.append([player.id])
 
 mesacards.append(Cartas[-1])
@@ -125,6 +131,7 @@ for player in Players:
                     del Cartas[-1]
                     cards[player.id] = [Cartas[-1]]
                     del Cartas[-1]
+                    Players[player.id+1].apuesta = player.apuesta
                 
                     print("1:", player.privatecard, cards[player.id], "2:", Players[player.id+1].privatecard, cards[numPlayers-1], cards[Players[numPlayers-1].id])
                     Players[player.id+1].owner = player.owner #lo mismo hands[player.id].append()
@@ -141,3 +148,21 @@ while (CantidadCartas(mesacards, mesapcard))<17:
     mesacards.append(Cartas[-1])
     del Cartas[-1]
 print(mesacards, mesapcard, CantidadCartas(mesacards, mesapcard))
+
+#cuenta beneficios
+cm = CantidadCartas(mesacards, mesapcard)
+
+for player in Players:
+    c = CantidadCartas(cards[player.id], player.privatecard)
+    if c == 21 and cm != 21:
+        money[player.owner] += player.apuesta*1.5
+    elif c < 21 and c > cm:
+        money[player.owner] += player.apuesta
+    elif c < cm and c < 21:
+        money[player.owner] -= player.apuesta
+    elif cm > 21 and c <= 21:
+        money[player.owner] += player.apuesta
+    elif c > 21:
+        money[player.owner] -= player.apuesta
+
+print(money)
