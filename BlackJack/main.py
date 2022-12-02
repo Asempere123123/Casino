@@ -27,6 +27,7 @@ class Player:
     def __init__(self, id):
         self.id = id
 
+    owner = None
     privatecard = 0
 
 cards = []
@@ -34,6 +35,8 @@ mesacards = []
 mesapcard = int()
 
 Cartas = []
+
+#lomismo hands = []
 
 for i in range(0, 61):
     if i < 4:
@@ -60,7 +63,7 @@ for i in range(0, 61):
 random.shuffle(Cartas)
 print(Cartas)
 #Repartir
-numPlayers = 2 #Cantidad de jugadores total
+numPlayers = 5 #Cantidad de jugadores total
 Players = []
 
 for playerID in range(0, numPlayers):
@@ -71,6 +74,9 @@ for player in Players:
     del Cartas[-1]
     cards.append([Cartas[-1]])
     del Cartas[-1]
+
+    player.owner = player.id
+    #añadir sistema posesion hands.append([player.id])
 
 mesacards.append(Cartas[-1])
 del Cartas[-1]
@@ -98,7 +104,7 @@ for player in Players:
     else:
         exit = True
         while exit:
-            print(player.privatecard, cards[player.id], str(CantidadCartas(cards[player.id], player.privatecard)))
+            print(player.privatecard, cards[player.id], str(CantidadCartas(cards[player.id], player.privatecard)), "owner:", player.owner)
             msg = "want a card?"
             a = input("%s (y/n/s) " % msg).lower()
             if a == "y":
@@ -108,13 +114,23 @@ for player in Players:
                     print("bro as perdio eres to nup")
                     exit = False
             elif a == "s":
-                numPlayers += 1
-                Players.append(Player(numPlayers)) #no se si es -1
-                print(Players[numPlayers-1].id, len(Players))
                 
+                if player.privatecard in cards[player.id]:
 
+                    numPlayers += 1
+                    Players.insert(player.id+1, Player(numPlayers-1)) #no se si es +1
+                    cards.append(cards[player.id])
                 
-
+                    Players[player.id+1].privatecard = Cartas[-1]
+                    del Cartas[-1]
+                    cards[player.id] = [Cartas[-1]]
+                    del Cartas[-1]
+                
+                    print("1:", player.privatecard, cards[player.id], "2:", Players[player.id+1].privatecard, cards[numPlayers-1], cards[Players[numPlayers-1].id])
+                    Players[player.id+1].owner = player.owner #lo mismo hands[player.id].append()
+                else:
+                    print("No puedes splitear")
+                
             else:
                 print(CantidadCartas(cards[player.id], player.privatecard))
                 exit = False
