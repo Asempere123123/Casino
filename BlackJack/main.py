@@ -155,7 +155,7 @@ cm = CantidadCartas(mesacards, mesapcard)
 for player in Players:
     c = CantidadCartas(cards[player.id], player.privatecard)
     if c == 21 and cm != 21:
-        money[player.owner] += player.apuesta*1.5
+        money[player.owner] += int(player.apuesta*1.5)
     elif c < 21 and c > cm:
         money[player.owner] += player.apuesta
     elif c < cm and c < 21:
