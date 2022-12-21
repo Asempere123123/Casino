@@ -10,12 +10,13 @@ for i in range(0, iteraciones):
     
     #Mezclar
     random.shuffle(Cartas)
+    random.shuffle(Cartas)
     
     o = 0
     es = ""
     while pillaCartas<17:
-        pillaCartas += Cartas[-1]
         o += 1
+        pillaCartas += Cartas[-o]
         if o == 2:
             es = str(pillaCartas)
             vecesCarta[es] += 1
@@ -32,4 +33,5 @@ for a, v in sumCarta.items():
         carta.append({i : 0})
     i += 1
 
-print(carta, media)
+print(carta)
+print(media)
