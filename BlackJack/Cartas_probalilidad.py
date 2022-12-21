@@ -10,7 +10,6 @@ for i in range(0, iteraciones):
     
     #Mezclar
     random.shuffle(Cartas)
-    random.shuffle(Cartas)
     
     o = 0
     es = ""
