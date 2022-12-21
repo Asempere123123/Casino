@@ -1,5 +1,5 @@
 import random
-iteraciones = 1000000
+iteraciones = 10000000
 media = 0
 
 sumCarta = {"1" : 0, "2" : 0, "3" : 0, "4" : 0, "5" : 0, "6" : 0, "7" : 0, "8" : 0, "9" : 0, "10" : 0, "11" : 0, "12" : 0, "13" : 0, "14" : 0, "15" : 0, "16" : 0, "17" : 0, "18" : 0, "19" : 0, "20" : 0, "21" : 0}
@@ -23,8 +23,13 @@ for i in range(0, iteraciones):
     sumCarta[es] += pillaCartas
     media += pillaCartas/iteraciones
 
-print(media)
-print(sumCarta, vecesCarta)
+carta = []
+i = 1
 for a, v in sumCarta.items():
     if vecesCarta[a] != 0:
-        print(str(sumCarta[a]/vecesCarta[a]))
+        carta.append({i : sumCarta[a]/vecesCarta[a]})
+    else:
+        carta.append({i : 0})
+    i += 1
+
+print(carta, media)
