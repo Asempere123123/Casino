@@ -17,9 +17,11 @@ for i in range(0, iteraciones):
         o += 1
         pillaCartas += Cartas[-o]
         if o == 2:
+            if pillaCartas == 22:
+                pillaCartas -= 10
             es = str(pillaCartas)
             vecesCarta[es] += 1
-
+    
     sumCarta[es] += pillaCartas
     media += pillaCartas/iteraciones
 
