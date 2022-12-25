@@ -1,7 +1,7 @@
 import random
 
 #Cantidad de veces que se va a realizar la simulacion, subir a 10^7 para la simulacion final
-iteraciones = 10000000
+iteraciones = 10000
 
 media = 0
 mediaValor = 0
