@@ -15,7 +15,7 @@ vecesCarta = {"1" : {"1" : 0, "2" : 0, "3" : 0, "4" : 0, "5" : 0, "6" : 0, "7" :
 
 #Baraja estandar de blackjack, por motivos de optimizacion esta simplificada. 
 # Al todas las cartas estar repetidas 4 veces, la probabilidad de cara carta se mantiene constante(max comun divisor(1, 4) = 4)
-Cartas = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+Cartas = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 for i in range(0, iteraciones):
     pillaCartas = 0
