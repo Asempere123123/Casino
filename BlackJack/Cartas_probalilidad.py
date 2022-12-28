@@ -5,6 +5,7 @@ iteraciones = 10000000
 
 media = 0
 mediaValor = 0
+mediaPillaCartas = 0
 
 cant12 = 0
 val12 = 0
@@ -36,6 +37,7 @@ for i in range(0, iteraciones):
         # y si esta tiene 2 ases, se cuenta uno de los 2 como 1 y el otro como 11(-10)
         if o == 2:
             mediaValor += Cartas[-(o+1)]/iteraciones
+            mediaPillaCartas += pillaCartas/iteraciones
 
             if (pillaCartas == 12):
                 cant12+=1
@@ -69,4 +71,4 @@ for i in vecesCarta:
 
 #printear resultados
 print(carta)
-print(media, mediaValor)
+print(media, mediaValor, mediaPillaCartas)
