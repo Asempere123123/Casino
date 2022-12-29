@@ -33,6 +33,12 @@ for i in range(0, iteraciones):
         o += 1
         pillaCartas += Cartas[o]
 
+        if o == 1:
+            es = str(pillaCartas)
+
+            o += 1
+            pillaCartas += Cartas[o]
+
         #Cuando coges 2 cartas se determina el valor de la mano inicial
         # y si esta tiene 2 ases, se cuenta uno de los 2 como 1 y el otro como 11(-10)
         if o == 2:
@@ -45,7 +51,6 @@ for i in range(0, iteraciones):
 
             if pillaCartas == 22:
                 pillaCartas -= 10
-            es = str(pillaCartas)
 
     #Calcular media
     media += pillaCartas/iteraciones
