@@ -11,10 +11,18 @@ def newDeck(deck):
     random.shuffle(deck)
 
 def twoCards(quien):
-    pass
-
-Cartas = []
-Croupier = []
+    l = Deck[-2:]
+    del Deck[-2:]
+    quien += l
 
 for _ in range(iteraciones):
-    Cartas.append
+    Cartas = []
+    Croupier = []
+
+    if len(Deck) <= 5:
+        newDeck(Deck)
+
+    twoCards(Cartas)
+    twoCards(Croupier)
+    
+    print(Cartas, Croupier)
