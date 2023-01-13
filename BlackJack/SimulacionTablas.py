@@ -15,7 +15,7 @@ with open('bj7.csv', newline='') as f:
     reader = csv.reader(f)
     tabla = list(reader)
 
-iteraciones = 10000000
+iteraciones = 100000000
 
 Deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 random.shuffle(Deck)
@@ -57,7 +57,7 @@ for _ in range(iteraciones):
     Cartas = []
     Croupier = []
 
-    if len(Deck) <= 10:
+    if len(Deck) <= 15:
         newDeck(Deck)
 
     twoCards(Cartas)
@@ -84,18 +84,24 @@ for _ in range(iteraciones):
 
     while sumCartas(Croupier) < 17:
         coger(Croupier)
-    
+
     if sumCartas(Cartas) <= 21:
-        if sumCartas(Cartas) > sumCartas(Croupier):
+
+        if sumCartas(Croupier) <= 21:
+            if sumCartas(Cartas) > sumCartas(Croupier):
+                #ganas
+                Win[str(Tuin)][str(Manin)] += 1
+        
+            elif sumCartas(Cartas) == sumCartas(Croupier):
+                #empate
+                Win[str(Tuin)][str(Manin)] += 1
+                Lost[str(Tuin)][str(Manin)] += 1
+            else:
+                #pierdes
+                Lost[str(Tuin)][str(Manin)] += 1
+        else:
             #ganas
             Win[str(Tuin)][str(Manin)] += 1
-        
-        elif sumCartas(Cartas) == sumCartas(Croupier):
-            #empate
-            pass
-        else:
-            #pierdes
-            Lost[str(Tuin)][str(Manin)] += 1
     else:
         #pierdes
         Lost[str(Tuin)][str(Manin)] += 1
