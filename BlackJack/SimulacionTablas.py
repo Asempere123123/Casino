@@ -65,8 +65,6 @@ for _ in range(iteraciones):
 
     Tuin = sumCartas(Cartas)
     Manin = Croupier[0]
-    if Tuin == 22 or Manin > 11:
-        print(Cartas, Croupier)
     
     while True:
         sum = sumCartas(Cartas)
