@@ -15,7 +15,7 @@ with open('bj7.csv', newline='') as f:
     reader = csv.reader(f)
     tabla = list(reader)
 
-iteraciones = 100000000
+iteraciones = 10000000
 
 Deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 random.shuffle(Deck)
@@ -93,7 +93,7 @@ for _ in range(iteraciones):
                 Win[str(Tuin)][str(Manin)] += 1
         
             elif sumCartas(Cartas) == sumCartas(Croupier):
-                #empate
+                #empate win tiene que subir proporcional para que no cambie los numeros
                 Win[str(Tuin)][str(Manin)] += 1
                 Lost[str(Tuin)][str(Manin)] += 1
             else:
