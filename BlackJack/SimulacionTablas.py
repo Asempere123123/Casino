@@ -11,7 +11,7 @@ with open('bi.csv', newline='') as f:
     reader = csv.reader(f)
     tabla = list(reader)
 
-iteraciones = 10000
+iteraciones = 1000000
 
 Deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 random.shuffle(Deck)
@@ -68,8 +68,6 @@ for _ in range(iteraciones):
         if sum > 21:
             break
         
-         
-
         accion = tabla[sum-3][Croupier[0]-1]
 
         if accion == "P":
@@ -86,7 +84,6 @@ for _ in range(iteraciones):
         elif accion == "R":
             if haspedido == True:
                 break
-            sum = 22
 
             dinero += apuesta/2
             break
