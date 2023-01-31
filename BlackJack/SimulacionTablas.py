@@ -7,7 +7,7 @@ apuestainicial = 10
 apuesta = apuestainicial
 #end zona output
 
-with open('bi.csv', newline='') as f:
+with open('bj9.csv', newline='') as f:
     reader = csv.reader(f)
     tabla = list(reader)
 
