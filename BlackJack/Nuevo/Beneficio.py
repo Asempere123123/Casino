@@ -70,7 +70,7 @@ for _ in range(0, iteraciones):
         if sum > 21:
             break
         
-        accion = chooseAction(c, cr)
+        accion = chooseAction(sumCartas(Cartas), cr)
 
         
         if accion == "P":

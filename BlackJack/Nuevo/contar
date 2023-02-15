@@ -1,15 +1,22 @@
 import csv, random
 
-with open('TablaDoblar.csv', newline='') as f:
+with open('Tabla_completa.csv', newline='') as f:
     reader = csv.reader(f)
     tabla = list(reader)
 
 def chooseAction(m, cr):
-    return tabla[m][cr]
+    if 11 in m:
+        #print("mano blanda", "Tu: " + str(m) + " Croupier: " + str(cr), tabla[sumCartas(m) + 10][cr])
+        return tabla[sumCartas(m) + 10][cr]
+    elif len(m) == 2:
+        if m[0] == m[1]:
+            return tabla[m[0] + 32][cr]
+    return tabla[sumCartas(m)][cr]
 
 apuestaInicial = 1
-iteraciones = 1000000
-dinero = 0
+iteraciones = 100
+dinero = dict.fromkeys(range(-50, 51), 0)
+cuenta = 0
 
 bet = apuestaInicial
 Deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -70,9 +77,8 @@ for _ in range(0, iteraciones):
         if sum > 21:
             break
         
-        accion = chooseAction(c, cr)
+        accion = chooseAction(Cartas, cr)
 
-        
         if accion == "P":
             coger(Cartas)
             haspedido = True
@@ -83,10 +89,20 @@ for _ in range(0, iteraciones):
                 haspedido = True
             coger(Cartas)
         elif accion == "Rp":
-            dinero -= bet/2
+            dinero[cuenta] -= bet/2
             ff = True  
             break
-            
+        
+        elif accion == "S":
+            bet*=2
+
+            ac = chooseAction([sumCartas(Cartas), 0], cr)
+
+            if ac == "P" or ac == "D":
+                coger(Cartas)
+            else:
+                break
+
         else:
             break
 
@@ -110,30 +126,30 @@ for _ in range(0, iteraciones):
             if summ <= 21:
                 if sumc > summ:
                     #ganas
-                    dinero += bet
+                    dinero[cuenta] += bet
 
                     if sumc == 21 and len(Cartas) == 2:
-                        dinero += bet/2
+                        dinero[cuenta] += bet/2
 
                 elif sumc == summ:
                     #empate
 
-                    dinero += bet
+                    dinero[cuenta] += bet
 
                     if sumc == 21 and len(Cartas) == 2:
-                        dinero += bet/2
+                        dinero[cuenta] += bet/2
                 else:
                     #pierdes
-                    dinero -= bet
+                    dinero[cuenta] -= bet
             else:
                 #ganas
-                dinero += bet
+                dinero[cuenta] += bet
 
                 if sumc == 21 and len(Cartas) == 2:
-                        dinero += bet/2
+                        dinero[cuenta] += bet/2
         else:
             #pierdes
-            dinero -= bet
+            dinero[cuenta] -= bet
 
 #output
 print(dinero)
